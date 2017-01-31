@@ -5,27 +5,31 @@
 var Jimp = require("jimp");
 var Histogram = require('./Histogram');
 
-var Autonails = {};
+var Clevernails = {};
 
-Autonails.prototype.const = {
+Clevernails.defaults = {
+    size: [50, 50]
+};
+
+Clevernails.const = {
     HORIZONTAL: 1,
     VERTICAL: 0,
     EPSILON: 1e-10
 };
 
-Autonails.prototype.getGreyscaleImage = function (image) {
+Clevernails.getGreyscaleImage = function (image) {
     var result = image.clone();
     result.greyscale();
     return result;
 };
 
-Autonails.prototype.getMeanImage = function (image) {
+Clevernails.getMeanImage = function (image) {
     var result = image.clone();
     result.blur(1);
     return result;
 };
 
-Autonails.prototype.resize = function (image, size) {
+Clevernails.resize = function (image, size) {
     var result = image.clone();
     var tWidth = size[0], tHeight = size[1];
     var scale = Math.max( tWidth / result.bitmap.width, tHeight / result.bitmap.height);
@@ -34,40 +38,81 @@ Autonails.prototype.resize = function (image, size) {
     return result;
 };
 
-Autonails.prototype.checkInput = function (options, callback) {
-    if (!options || !(options instanceof Object)) {
+Clevernails.checkInput = function (options, callback) {
+    if (options instanceof Function) {
+        options(new Error("please provide correct configuration"));
+        return false;
+    }
+    else if (!options || !(options instanceof Object)) {
         if (callback instanceof Function) {
             callback(new Error("please provide correct configuration"));
+            return false;
         }
-        return false;
+        else {
+            throw new Error("please provide correct configuration");
+        }
     }
     else if(!options.hasOwnProperty("input")
-        || !(options.hasOwnProperty("size") && options.size instanceof Array && options.size.length >= 2)
         || !options.hasOwnProperty("output")) {
         if (callback instanceof Function) {
-            callback(new Error("please provide correct configuration"));
+            callback(new Error("please provide correct input or output path"));
+            return false;
         }
-        return false;
+        else {
+            throw new Error("please provide correct input or output path");
+        }
     }
-    return true;
+    else {
+        return true;
+    }
 };
 
-Autonails.prototype.process = function (options, callback) {
+Clevernails.parseSize = function (size, callback) {
+    if (!size) {
+        return this.defaults.size;
+    }
+    else if (size instanceof Array) {
+        if (size.length >= 2) {
+            if (!isNaN(parseInt(size[0])) && !isNaN(parseInt(size[1]))) {
+                return [parseInt(size[0]), parseInt(size[1])];
+            }
+        }
+        else if (size.length == 1) {
+            if (!isNaN(parseInt(size[0]))) {
+                return [parseInt(size[0]), parseInt(size[0])];
+            }
+        }
+    }
+    else if (!isNaN(parseInt(size))) {
+        return [parseInt(size), parseInt(size)];
+    }
+    callback(new TypeError("please provide correct size"));
+    return null;
+};
+
+Clevernails.process = function (options, callback) {
 
     var that = this;
-    if (that.checkInput(options, callback)) {
+    if (!that.checkInput(options, callback)) {
+        return;
+    }
+
+    var size = that.parseSize(options.size, callback);
+    if (!size) {
         return;
     }
 
     Jimp.read(options.input, function (err, image) {
-        if (err) throw err;
+        if (err) {
+            return callback(err);
+        }
 
         // 步骤1：将原图转化为灰度图。
         var gray = that.getGreyscaleImage(image);
 
         // 步骤2：将图像转化到其中一个维度满足目标尺寸。
-        image = that.resize(image, options.size);
-        gray = that.resize(gray, options.size);
+        image = that.resize(image, size);
+        gray = that.resize(gray, size);
 
         // 步骤3：基于图像构建平均图
         var blurred = that.getMeanImage(image);
@@ -128,4 +173,10 @@ Autonails.prototype.process = function (options, callback) {
     });
 };
 
-module.exports = Autonails;
+module.exports = Clevernails;
+
+var option = {
+    input: "./fixtures/test.jpg",
+    output: "./output/output-1.jpg",
+    size: [500, 500]
+};

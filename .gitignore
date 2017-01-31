@@ -38,3 +38,6 @@ jspm_packages
 
 # Webstorm Configuration
 .idea
+
+# test output
+test/outputs

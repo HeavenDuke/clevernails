@@ -1,5 +1,5 @@
 {
-  "name": "autonails",
+  "name": "clevernails",
   "version": "1.0.0",
   "dependencies": {
     "jimp": "latest"
@@ -9,13 +9,15 @@
   "directories": {
     "test": "test"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "supertest": "^3.0.0"
+  },
   "scripts": {
-    "test": "npm test"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HeavenDuke/autonails.git"
+    "url": "git+https://github.com/HeavenDuke/clevernails.git"
   },
   "keywords": [
     "thumbnail",
@@ -26,7 +28,7 @@
   "author": "HeavenDuke",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/HeavenDuke/autonails/issues"
+    "url": "https://github.com/HeavenDuke/clevernails/issues"
   },
-  "homepage": "https://github.com/HeavenDuke/autonails#readme"
+  "homepage": "https://github.com/HeavenDuke/clevernails#readme"
 }
