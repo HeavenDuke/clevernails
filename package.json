@@ -10,7 +10,7 @@
     "test": "test"
   },
   "devDependencies": {
-    "supertest": "^3.0.0"
+    "mocha": "latest"
   },
   "scripts": {
     "test": "mocha"
