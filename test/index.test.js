@@ -12,7 +12,7 @@ describe('Clevernails', function () {
         it('with params and callback', function (done) {
             var option = {
                 input: "./test/fixtures/test.jpg",
-                output: "./test/outputs/output-1.jpg",
+                output: "./test/output-1.jpg",
                 size: [500, 500]
             };
             clevernails.process(option, function (err, info) {
@@ -30,7 +30,7 @@ describe('Clevernails', function () {
         it('with params, without callback', function (done) {
             var option = {
                 input: "./test/fixtures/test.jpg",
-                output: "./test/outputs/output-2.jpg",
+                output: "./test/output-2.jpg",
                 size: [500, 500]
             };
             clevernails.process(option);
@@ -47,7 +47,7 @@ describe('Clevernails', function () {
         it('with missing size', function (done) {
             var option = {
                 input: "./test/fixtures/test.jpg",
-                output: "./test/outputs/output-3.jpg"
+                output: "./test/output-3.jpg"
             };
             clevernails.process(option, function (err, info) {
                 assert.equal(null, err);
@@ -64,7 +64,7 @@ describe('Clevernails', function () {
         it('with size of only a number', function (done) {
             var option = {
                 input: "./test/fixtures/test.jpg",
-                output: "./test/outputs/output-4.jpg",
+                output: "./test/output-4.jpg",
                 size: 233
             };
             clevernails.process(option, function (err, info) {
@@ -82,7 +82,7 @@ describe('Clevernails', function () {
         it('with size of two dimensions', function (done) {
             var option = {
                 input: "./test/fixtures/test.jpg",
-                output: "./test/outputs/output-5.jpg",
+                output: "./test/output-5.jpg",
                 size: [800, 600]
             };
             clevernails.process(option, function (err, info) {
@@ -100,7 +100,7 @@ describe('Clevernails', function () {
         it('with size of more than two dimensions)', function (done) {
             var option = {
                 input: "./test/fixtures/test.jpg",
-                output: "./test/outputs/output-6.jpg",
+                output: "./test/output-6.jpg",
                 size: [300, 200, 500]
             };
             clevernails.process(option, function (err, info) {
@@ -118,7 +118,7 @@ describe('Clevernails', function () {
         it('with size of only one dimension', function (done) {
             var option = {
                 input: "./test/fixtures/test.jpg",
-                output: "./test/outputs/output.jpg",
+                output: "./test/output.jpg",
                 size: [233]
             };
             clevernails.process(option, function (err, info) {
@@ -158,7 +158,7 @@ describe('Clevernails', function () {
 
         it('with missing input', function (done) {
             var option = {
-                output: "./test/outputs/output.jpg",
+                output: "./test/output.jpg",
                 size: [500, 500]
             };
             clevernails.process(option, function (err, info) {
@@ -185,7 +185,7 @@ describe('Clevernails', function () {
         it('with non-existing input path', function (done) {
             var option = {
                 input: "./test/fixtures/test-233.jpg",
-                output: "./test/outputs/output.jpg",
+                output: "./test/output.jpg",
                 size: [500, 500]
             };
             clevernails.process(option, function (err, info) {
@@ -213,7 +213,7 @@ describe('Clevernails', function () {
         it('with incorrect size (not an array)', function (done) {
             var option = {
                 input: "./test/fixtures/test.jpg",
-                output: "./test/outputs/output.jpg",
+                output: "./test/output.jpg",
                 size: {}
             };
             clevernails.process(option, function (err, info) {
@@ -228,7 +228,7 @@ describe('Clevernails', function () {
         it('with incorrect size (two dimension but one is not a number)', function (done) {
             var option = {
                 input: "./test/fixtures/test.jpg",
-                output: "./test/outputs/output.jpg",
+                output: "./test/output.jpg",
                 size: [500, 'a']
             };
             clevernails.process(option, function (err, info) {
@@ -242,7 +242,7 @@ describe('Clevernails', function () {
         it('with incorrect size (one dimension and is not a number)', function (done) {
             var option = {
                 input: "./test/fixtures/test.jpg",
-                output: "./test/outputs/output.jpg",
+                output: "./test/output.jpg",
                 size: ['a']
             };
             clevernails.process(option, function (err, info) {
@@ -256,7 +256,7 @@ describe('Clevernails', function () {
         it('with incorrect size of a empty array', function (done) {
             var option = {
                 input: "./test/fixtures/test.jpg",
-                output: "./test/outputs/output.jpg",
+                output: "./test/output.jpg",
                 size: []
             };
             clevernails.process(option, function (err, info) {
