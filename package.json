@@ -1,0 +1,32 @@
+{
+  "name": "autonails",
+  "version": "1.0.0",
+  "dependencies": {
+    "jimp": "latest"
+  },
+  "description": "An intelligent thumbnail generator that get the most important part of a image based on shannon entropy.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HeavenDuke/autonails.git"
+  },
+  "keywords": [
+    "thumbnail",
+    "entropy",
+    "image",
+    "processing"
+  ],
+  "author": "HeavenDuke",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HeavenDuke/autonails/issues"
+  },
+  "homepage": "https://github.com/HeavenDuke/autonails#readme"
+}
