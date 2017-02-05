@@ -1,6 +1,19 @@
 # clevernails
 An intelligent thumbnail generator that gets the most important part of a image based on shannon entropy.
 
+[![NPM version][npm-image]][npm-url]
+[![build status][travis-image]][travis-url]
+[![npm download][download-image]][download-url]
+[![dependencies][david-image]][david-image]
+
+[npm-image]: https://img.shields.io/npm/v/clevernails.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/clevernails
+[david-image]: https://david-dm.org/HeavenDuke/clevernails.svg
+[travis-image]: https://travis-ci.org/HeavenDuke/clevernails.svg
+[travis-url]: https://travis-ci.org/HeavenDuke/clevernails
+[download-image]: https://img.shields.io/npm/dm/clevernails.svg?style=flat-square
+[download-url]: https://npmjs.org/package/clevernails
+
 ## Install
 
 ```plain
